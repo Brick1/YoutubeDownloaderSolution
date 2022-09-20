@@ -7,8 +7,46 @@
         mc:Ignorable="d"
        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        ResizeMode="NoResize"
+        BorderThickness="0"
         Title="Loading window" Height="300" Width="600">
     <Grid>
+        <Rectangle >
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                    <GradientStop Color="#022534" Offset="0"/>
+                    <GradientStop Color="#094f6e" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Margin="54,202,215,31">
+            <Rectangle  RenderTransformOrigin="0.5,0.5" RadiusX="0" RadiusY="0"  >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="11.519"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-6.827"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="White"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+                    
+                <Label VerticalAlignment="Center">
+                    <Grid>
+                        <Rectangle Fill="Red" RadiusX="20" RadiusY="20"/>
+                        <TextBlock Margin="15 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Text="Y" Foreground="White" />
+                    </Grid>
+                </Label>
+                <TextBlock VerticalAlignment="Center" FontSize="29" Text="outube Downloader" />
+            </StackPanel>
+
+        </Grid>
+
 
     </Grid>
 </Window>
