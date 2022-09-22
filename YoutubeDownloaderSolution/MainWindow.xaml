@@ -26,7 +26,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button>Settings</Button>
             <Button>Minimize</Button>
-            <Button Click="Button_Click">Close</Button>
+            <Button Click="ClsButton_Click">Close</Button>
         </StackPanel>
         <Frame Grid.Row="1" Name="MainContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
     </Grid>

@@ -38,8 +38,9 @@
                     
                 <Label VerticalAlignment="Center">
                     <Grid>
-                        <Rectangle Fill="Red" RadiusX="20" RadiusY="20"/>
-                        <TextBlock Margin="15 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Text="Y" Foreground="White" />
+                        <Rectangle Height="50" Width="50" Fill="Red"  RadiusX="10" RadiusY="10"/>
+
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Text="Y" Foreground="White" />
                     </Grid>
                 </Label>
                 <TextBlock VerticalAlignment="Center" FontSize="29" Text="outube Downloader" />
