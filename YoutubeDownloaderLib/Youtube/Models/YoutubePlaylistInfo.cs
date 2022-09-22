@@ -18,10 +18,17 @@ namespace YoutubeDownloader.Youtube.Models
             ThumbnailURL = thumbnailURL;
         }
 
+
         public IYoutubeVideoInfo this[int index] => VideosInfos[index];
 
+        /// <summary>
+        /// Title of the playlist
+        /// </summary>
         public string Title { get; }
 
+        /// <summary>
+        /// Description of the playlist
+        /// </summary>
         public string Description { get; }
 
         public YoutubeVideoInfo[] VideosInfos { get; }
@@ -30,9 +37,7 @@ namespace YoutubeDownloader.Youtube.Models
 
         IYoutubeVideoInfo[] IYoutubePlaylistInfo.VideosInfos => VideosInfos;
 
-        public IEnumerator GetEnumerator()
-        {
-            return VideosInfos.GetEnumerator();
-        }
+        public IEnumerator GetEnumerator() => VideosInfos.GetEnumerator();
+
     }
 }

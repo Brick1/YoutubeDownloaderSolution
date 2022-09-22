@@ -13,6 +13,7 @@ namespace YoutubeDownloader.Youtube
         /// Duration of the video
         /// Will be obselete and removed
         /// </summary>
+        [Obsolete("Duration of the video")]
         public TimeSpan? Duration { get; }
         /// <summary>
         /// Title of the video
@@ -24,11 +25,6 @@ namespace YoutubeDownloader.Youtube
         /// </summary>
         public string Author { get; }
 
-        ///// <summary>
-        ///// Video URL
-        ///// </summary>
-        //public string URL { get; }
-
         /// <summary>
         /// Video ID from Youtube
         /// </summary>
@@ -39,6 +35,9 @@ namespace YoutubeDownloader.Youtube
         /// </summary>
         public Thumbnails Thumbnails { get; }
 
+        /// <summary>
+        /// The date when the video was published
+        /// </summary>
         public DateTime? PusblishedAt { get; }
 
         public YoutubeVideoInfo(string title, string author, string id, Thumbnails thumbnails, DateTime? publishedAt, TimeSpan? duration)
