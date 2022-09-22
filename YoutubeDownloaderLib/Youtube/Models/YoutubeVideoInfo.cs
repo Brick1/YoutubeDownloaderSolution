@@ -37,18 +37,41 @@ namespace YoutubeDownloader.Youtube
         /// <summary>
         /// URLS for thumbnails
         /// </summary>
-        public string[] ThumbnailsUrls { get; }
+        public Thumbnails Thumbnails { get; }
 
         public DateTime? PusblishedAt { get; }
 
-        public YoutubeVideoInfo(string title, string author, string id, string[] thumbnails, DateTime? publishedAt, TimeSpan? duration)
+        public YoutubeVideoInfo(string title, string author, string id, Thumbnails thumbnails, DateTime? publishedAt, TimeSpan? duration)
         {
             Title = title;
             PusblishedAt = publishedAt;
             Author = author;
             ID = id;
-            ThumbnailsUrls = thumbnails;
+            Thumbnails = thumbnails;
             Duration = duration;
+        }
+    }
+
+    public class Thumbnails
+    {
+        public Thumbnail? Default { get; set; }
+        public Thumbnail? Medium { get; set; }
+        public Thumbnail? Hihg { get; set; }
+        public Thumbnail? Standard { get; set; }
+        public Thumbnail? MaxRes { get; set; }
+    }
+
+    public class Thumbnail
+    {
+        public string URL { get; private set; }
+        public uint Width { get; private set; }
+        public uint Height { get; private set; }
+
+        public Thumbnail(string uRL, uint width, uint height)
+        {
+            URL = uRL;
+            Width = width;
+            Height = height;
         }
     }
 }

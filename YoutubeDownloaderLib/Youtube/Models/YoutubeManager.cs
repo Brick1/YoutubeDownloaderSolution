@@ -97,6 +97,8 @@ namespace YoutubeDownloader.Youtube.Models
             playlistListRequest.Id = playlistID;
             var playlistListResponse = await playlistListRequest.ExecuteAsync(); // getting the playlist
             var result = playlistListResponse.Items.FirstOrDefault(); // picking the first playlist, it's usually just one in the array
+            if (result == null)
+                return null;
 
             // cycling through the pages with videos until the token is null
             string nextPageToken = "";
@@ -142,6 +144,7 @@ namespace YoutubeDownloader.Youtube.Models
             var author = item.Snippet?.VideoOwnerChannelTitle;
             var thumbnails = item.Snippet?.Thumbnails;
             var addedToPlaylist = item.Snippet?.PublishedAt;
+            var url = item.Snippet.
             return new YoutubeVideoInfo(title, author, id, GetThumbnailURL(thumbnails), addedToPlaylist, null);
         }
 
