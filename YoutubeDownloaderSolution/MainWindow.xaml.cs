@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace YoutubeDownloaderSolution
@@ -18,10 +17,9 @@ namespace YoutubeDownloaderSolution
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoadingWindow : Window
+    public partial class MainWindow : Window
     {
-
-        public LoadingWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
