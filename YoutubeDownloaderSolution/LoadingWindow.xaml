@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YoutubeDownloaderSolution"
+        xmlns:local="clr-namespace:YoutubeDownloaderSolution" xmlns:localUC="clr-namespace:YoutubeDownloaderDesktop.UserControls"
         mc:Ignorable="d"
        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -20,32 +20,8 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Grid Margin="54,202,215,31">
-            <Rectangle  RenderTransformOrigin="0.5,0.5" RadiusX="0" RadiusY="0"  >
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="11.519"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-6.827"/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="White"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
-                    
-                <Label VerticalAlignment="Center">
-                    <Grid>
-                        <Rectangle Height="50" Width="50" Fill="Red"  RadiusX="10" RadiusY="10"/>
-
-                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Text="Y" Foreground="White" />
-                    </Grid>
-                </Label>
-                <TextBlock VerticalAlignment="Center" FontSize="29" Text="outube Downloader" />
-            </StackPanel>
-
+        <Grid >
+            <localUC:LogoUC/>
         </Grid>
 
 
