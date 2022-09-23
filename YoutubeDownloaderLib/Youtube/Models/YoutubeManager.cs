@@ -115,7 +115,7 @@ namespace YoutubeDownloader.Youtube.Models
                     foreach (var item in playlistItemsListResponse.Items)
                     {
                         // if the video is private there's no info about it, nor the URL, so let's just skip it
-                        if (item.Snippet?.Title.ToLower() == "private video") continue; 
+                        if (item.Snippet?.Title.ToLower() == "private video") continue;
 
                         // creating the videoInfo and adding it to the list
                         var youtubevideoInfo = CreateVideoInfo(item);
@@ -142,10 +142,23 @@ namespace YoutubeDownloader.Youtube.Models
             var id = item.Snippet?.ResourceId.Kind == "youtube#video" ? item.Snippet.ResourceId.VideoId : "";
             var title = item.Snippet?.Title;
             var author = item.Snippet?.VideoOwnerChannelTitle;
-            var thumbnails = item.Snippet?.Thumbnails;
+            var thumbnails = GetThumnbails(item.Snippet?.Thumbnails);
             var addedToPlaylist = item.Snippet?.PublishedAt;
-            var url = item.Snippet.
-            return new YoutubeVideoInfo(title, author, id, GetThumbnailURL(thumbnails), addedToPlaylist, null);
+            var url = item.Snippet;
+            return new YoutubeVideoInfo(title, author, id, thumbnails, addedToPlaylist, null);
+        }
+
+        private Thumbnails GetThumnbails(ThumbnailDetails? thumbnails)
+        {
+            if (thumbnails != null) return new Thumbnails();
+
+            Thumbnails thumbs = new Thumbnails();
+            thumbs.Default = new Thumbnail(thumbnails.Default__.Url, thumbnails?.Default__?.Width, thumbnails?.Default__?.Height);
+            thumbs.Standard = new Thumbnail(thumbnails.Standard.Url, thumbnails.Standard.Width, thumbnails.Standard.Height);
+            thumbs.MaxRes = new Thumbnail(thumbnails.Maxres.Url, thumbnails.Maxres.Width, thumbnails.Maxres.Height);
+            thumbs.Medium = new Thumbnail(thumbnails.Medium.Url, thumbnails.Medium.Width, thumbnails.Medium.Height);
+            thumbs.High = new Thumbnail(thumbnails.High.Url, thumbnails.High.Width, thumbnails.High.Height);
+            return thumbs;
         }
 
         private string[] GetThumbnailURL(ThumbnailDetails thumbnailDetails)
