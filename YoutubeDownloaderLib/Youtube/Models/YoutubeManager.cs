@@ -89,7 +89,7 @@ namespace YoutubeDownloader.Youtube.Models
         /// </summary>
         /// <param name="playlistID">Playlist ID</param>
         /// <returns>An array of urls as string</returns>
-        public async Task<YoutubePlaylistInfo> GetPlaylistVideosUrlsAsync(string playlistID)
+        public async Task<YoutubePlaylistInfo?> GetPlaylistVideosUrlsAsync(string playlistID)
         {
             List<YoutubeVideoInfo> youtubeVideos = new List<YoutubeVideoInfo>();
 

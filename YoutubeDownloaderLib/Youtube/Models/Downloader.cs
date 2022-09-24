@@ -45,16 +45,16 @@ namespace YoutubeDownloader.Youtube
             return manifest.GetMuxedStreams().GetWithHighestBitrate();
         }
 
-        /// <summary>
-        /// Gets video info
-        /// </summary>
-        /// <param name="videoID">Id from Url of video</param>
-        /// <returns><see cref="YoutubeVideoInfo"/></returns>
-        public async Task<YoutubeVideoInfo> GetVideoInfo(string videoID)
-        {
-            var videoInfo = await client.Videos.GetAsync(videoID).ConfigureAwait(false);
-            return new YoutubeVideoInfo(videoInfo.Title, videoInfo.Author.Title, videoInfo.Id, videoInfo.Thumbnails.Select(q => q.Url).ToArray(), null, videoInfo.Duration);
-        }
+        ///// <summary>
+        ///// Gets video info
+        ///// </summary>
+        ///// <param name="videoID">Id from Url of video</param>
+        ///// <returns><see cref="YoutubeVideoInfo"/></returns>
+        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoID)
+        //{
+        //    var videoInfo = await client.Videos.GetAsync(videoID).ConfigureAwait(false);
+        //    return new YoutubeVideoInfo(videoInfo.Title, videoInfo.Author.Title, videoInfo.Id, videoInfo.Thumbnails.Select(q => q.Url).ToArray(), null, videoInfo.Duration);
+        //}
 
         /// <summary>
         /// Downloads audio async to a local drive
@@ -121,28 +121,28 @@ namespace YoutubeDownloader.Youtube
         }
 
 
-        /// <summary>
-        /// Gets videos infos as array od <see cref="IYoutubeVideoInfo"></see>/>
-        /// </summary>
-        /// <param name="playlistVideos">An array with playlist videos IDs</param>
-        /// <returns><see cref="IYoutubeVideoInfo"></see> array/></returns>
-        private async Task<YoutubeVideoInfo[]> GetVideos(string[] playlistVideos)
-        {
-            List<YoutubeVideoInfo> videos = new List<YoutubeVideoInfo>();
-            foreach (var video in playlistVideos)
-            {
-                try
-                {
-                    var videoInfo = await GetVideoInfo(video).ConfigureAwait(false);
-                    videos.Add(videoInfo);
-                }
-                catch (Exception ex)
-                {
-                    // TODO: Some kind of log system
-                }
-            }
-            return videos.ToArray();
-        }
+        ///// <summary>
+        ///// Gets videos infos as array od <see cref="IYoutubeVideoInfo"></see>/>
+        ///// </summary>
+        ///// <param name="playlistVideos">An array with playlist videos IDs</param>
+        ///// <returns><see cref="IYoutubeVideoInfo"></see> array/></returns>
+        //private async Task<YoutubeVideoInfo[]> GetVideos(string[] playlistVideos)
+        //{
+        //    List<YoutubeVideoInfo> videos = new List<YoutubeVideoInfo>();
+        //    foreach (var video in playlistVideos)
+        //    {
+        //        try
+        //        {
+        //            var videoInfo = await GetVideoInfo(video).ConfigureAwait(false);
+        //            videos.Add(videoInfo);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // TODO: Some kind of log system
+        //        }
+        //    }
+        //    return videos.ToArray();
+        //}
 
 
     }
