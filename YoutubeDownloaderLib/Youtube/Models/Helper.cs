@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace YoutubeDownloader.Youtube.Models
 {
-    public static class Helper
+    internal static class Helper
     {
         public static string ExtractVideoID(string url)
         {

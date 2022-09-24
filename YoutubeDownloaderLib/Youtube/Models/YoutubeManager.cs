@@ -42,31 +42,31 @@ namespace YoutubeDownloader.Youtube.Models
             });
         }
 
-        public async Task<IYoutubeVideoInfo> GetVideo(string videoUrl)
-        {
-            return await downloader.GetVideoInfo(videoUrl);
-        }
-
-        /// <summary>
-        /// THIS WILL BE REMOVED IN THE FUTURE
-        /// </summary>
-        /// <param name="playlistVideosUrls"></param>
-        /// <returns></returns>
-        //public async Task<YoutubePlaylistInfo> GetPlaylistInfo(string playlistUrl, string[] videosUrls)
+        //public async Task<IYoutubeVideoInfo> GetVideo(string videoUrl)
         //{
-        //    return await downloader.GetPlaylistInfno(playlistUrl, videosUrls);
+        //    return await downloader.GetVideoInfo(videoUrl);
         //}
 
-        [Obsolete("This method takes too long for a large playlist to finish")]
-        public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls)
-        {
-            return await downloader.GetPlaylistVideosAsync(playlistVideosUrls).ConfigureAwait(false);
-        }
+        ///// <summary>
+        ///// THIS WILL BE REMOVED IN THE FUTURE
+        ///// </summary>
+        ///// <param name="playlistVideosUrls"></param>
+        ///// <returns></returns>
+        ////public async Task<YoutubePlaylistInfo> GetPlaylistInfo(string playlistUrl, string[] videosUrls)
+        ////{
+        ////    return await downloader.GetPlaylistInfno(playlistUrl, videosUrls);
+        ////}
 
-        public async Task<YoutubeVideoInfo> GetVideoInfo(string videoId)
-        {
-            return await downloader.GetVideoInfo(videoId).ConfigureAwait(false);
-        }
+        //[Obsolete("This method takes too long for a large playlist to finish")]
+        //public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls)
+        //{
+        //    return await downloader.GetPlaylistVideosAsync(playlistVideosUrls).ConfigureAwait(false);
+        //}
+
+        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoId)
+        //{
+        //    return await downloader.GetVideoInfo(videoId).ConfigureAwait(false);
+        //}
 
         public async Task DownloadAudioFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
         {
