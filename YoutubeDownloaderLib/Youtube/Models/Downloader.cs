@@ -45,17 +45,7 @@ namespace YoutubeDownloader.Youtube
             return manifest.GetMuxedStreams().GetWithHighestBitrate();
         }
 
-        ///// <summary>
-        ///// Gets video info
-        ///// </summary>
-        ///// <param name="videoID">Id from Url of video</param>
-        ///// <returns><see cref="YoutubeVideoInfo"/></returns>
-        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoID)
-        //{
-        //    var videoInfo = await client.Videos.GetAsync(videoID).ConfigureAwait(false);
-        //    return new YoutubeVideoInfo(videoInfo.Title, videoInfo.Author.Title, videoInfo.Id, videoInfo.Thumbnails.Select(q => q.Url).ToArray(), null, videoInfo.Duration);
-        //}
-
+        
         /// <summary>
         /// Downloads audio async to a local drive
         /// </summary>
@@ -65,6 +55,20 @@ namespace YoutubeDownloader.Youtube
         public async Task<Tuple<string, string>> DownloadAudioAsync(IYoutubeVideoInfo videoInfo, IProgress<double> progress)
         {
             return await DownloadMedia(videoInfo, progress, GetAudioManifest(videoInfo.ID));
+        }
+
+        /// <summary>
+        /// Downloads whole playlist, this can take a while and I really mean it.
+        /// </summary>
+        /// <returns>Returns list of tuples, where first string is path to the file and second is filename</returns>
+        public async Task<List<Tuple<string, string>>> DownloadAudiosAsync(IYoutubePlaylistInfo playlistInfo, IProgress<double> progress)
+        {
+            List<Tuple<string, string>> downloadedAudios = new List<Tuple<string, string>>();
+            foreach(IYoutubeVideoInfo videoInfo in playlistInfo)
+            {
+                downloadedAudios.Add(await DownloadAudioAsync(videoInfo, progress));
+            }
+            return downloadedAudios;
         }
 
 
@@ -93,6 +97,18 @@ namespace YoutubeDownloader.Youtube
             await client.Videos.Streams.DownloadAsync(stream, path, progress);
             return new Tuple<string, string>(path, videoInfo.Title);
         }
+
+        ///// <summary>
+        ///// Gets video info
+        ///// </summary>
+        ///// <param name="videoID">Id from Url of video</param>
+        ///// <returns><see cref="YoutubeVideoInfo"/></returns>
+        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoID)
+        //{
+        //    var videoInfo = await client.Videos.GetAsync(videoID).ConfigureAwait(false);
+        //    return new YoutubeVideoInfo(videoInfo.Title, videoInfo.Author.Title, videoInfo.Id, videoInfo.Thumbnails.Select(q => q.Url).ToArray(), null, videoInfo.Duration);
+        //}
+
 
         /// THIS WILL BE REMOVED IN THE FUTURE
         ///// <summary>
