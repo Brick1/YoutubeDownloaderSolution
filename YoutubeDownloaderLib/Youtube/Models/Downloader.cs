@@ -107,18 +107,18 @@ namespace YoutubeDownloader.Youtube
         //    return new YoutubePlaylistInfo(playlistTitle, playlistInfo.Description, videosURLs);
         //}
 
-        /// <summary>
-        /// Gets the playlist by given playlist ID
-        /// In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead
-        /// </summary>
-        /// <param name="playlistID">The playlist ID</param>
-        /// <returns><see cref="YoutubeVideoInfo"></see>/></returns>
-        [Obsolete("In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead")]
-        public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls) // this seems to be critical, DO NOT USE interface as return type, idk why tho got to look into this
-        {
-            //var playlistInfo = await client.Playlists.GetAsync(playlistID);
-            return await GetVideos(playlistVideosUrls).ConfigureAwait(false);
-        }
+        ///// <summary>
+        ///// Gets the playlist by given playlist ID
+        ///// In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead
+        ///// </summary>
+        ///// <param name="playlistID">The playlist ID</param>
+        ///// <returns><see cref="YoutubeVideoInfo"></see>/></returns>
+        //[Obsolete("In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead")]
+        //public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls) // this seems to be critical, DO NOT USE interface as return type, idk why tho got to look into this
+        //{
+        //    //var playlistInfo = await client.Playlists.GetAsync(playlistID);
+        //    return await GetVideos(playlistVideosUrls).ConfigureAwait(false);
+        //}
 
 
         ///// <summary>
