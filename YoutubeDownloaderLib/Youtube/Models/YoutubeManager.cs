@@ -74,6 +74,7 @@ namespace YoutubeDownloader.Youtube.Models
             var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
             var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2, extension);
             MediaConverter.Convert(downloadInfo.Item1, output);
+            // TODO: Some clean up after the converstion would be nice, not sure if needed rn
         }
 
         public async Task DownloadVideoFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
