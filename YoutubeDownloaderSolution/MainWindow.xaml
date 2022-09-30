@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="1250">
     <Window.Background>
         <LinearGradientBrush>
             <GradientStop Color="#022534"/>
@@ -29,6 +29,18 @@
             <Button>Minimize</Button>
             <Button Click="ClsButton_Click">Close</Button>
         </StackPanel>
-        <Frame Grid.Row="1" Name="MainContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
+        <Grid Grid.Row="1" Name="MainContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
+                <ToggleButton Content="Download"/>
+                <ToggleButton Content="Download"/>
+            </StackPanel>
+            
+            <Frame  NavigationUIVisibility="Hidden"></Frame>
+
+        </Grid>
     </Grid>
 </Window>

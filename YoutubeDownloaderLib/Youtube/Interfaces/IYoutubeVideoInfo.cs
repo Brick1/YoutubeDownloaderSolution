@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Apis.YouTube.v3.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,6 @@ namespace YoutubeDownloader.Youtube.Interfaces
         /// Collection of the thumbnails for the video
         /// </summary>
         Thumbnails Thumbnails { get; }
+
     }
 }

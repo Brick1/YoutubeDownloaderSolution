@@ -11,6 +11,9 @@ using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeDownloader.Youtube
 {
+    /// <summary>
+    /// This is main class for downloading from YT
+    /// </summary>
     internal class Downloader
     {
         /// <summary>

@@ -9,6 +9,10 @@ using YoutubeDownloader.Youtube.Interfaces;
 
 namespace YoutubeDownloader.Youtube.Models
 {
+
+    /// <summary>
+    /// Public class for downloading from YT
+    /// </summary>
     public class YoutubeManager
     {
         const string YOUTUBE_URL = "https://www.youtube.com/";
@@ -41,32 +45,6 @@ namespace YoutubeDownloader.Youtube.Models
                 ApplicationName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name
             });
         }
-
-        //public async Task<IYoutubeVideoInfo> GetVideo(string videoUrl)
-        //{
-        //    return await downloader.GetVideoInfo(videoUrl);
-        //}
-
-        ///// <summary>
-        ///// THIS WILL BE REMOVED IN THE FUTURE
-        ///// </summary>
-        ///// <param name="playlistVideosUrls"></param>
-        ///// <returns></returns>
-        ////public async Task<YoutubePlaylistInfo> GetPlaylistInfo(string playlistUrl, string[] videosUrls)
-        ////{
-        ////    return await downloader.GetPlaylistInfno(playlistUrl, videosUrls);
-        ////}
-
-        //[Obsolete("This method takes too long for a large playlist to finish")]
-        //public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls)
-        //{
-        //    return await downloader.GetPlaylistVideosAsync(playlistVideosUrls).ConfigureAwait(false);
-        //}
-
-        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoId)
-        //{
-        //    return await downloader.GetVideoInfo(videoId).ConfigureAwait(false);
-        //}
 
         public async Task DownloadAudioFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
         {
@@ -131,6 +109,7 @@ namespace YoutubeDownloader.Youtube.Models
 
             }
             YoutubePlaylistInfo info = new YoutubePlaylistInfo(result.Snippet.Title, result.Snippet.Description, youtubeVideos.ToArray(), GetThumbnailURL(result.Snippet.Thumbnails)[0]);
+            // TODO: make a simplier way to get the thumbnail for the playlist
             return info;
         }
 
