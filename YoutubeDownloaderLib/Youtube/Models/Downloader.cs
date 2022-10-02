@@ -114,11 +114,11 @@ namespace YoutubeDownloader.Youtube
 
 
         /// THIS WILL BE REMOVED IN THE FUTURE
-        ///// <summary>
-        ///// Gets the playlist info by given paylist ID
-        ///// </summary>
-        ///// <param name="playlistID">Playlist ID</param>
-        ///// <returns><see cref="YoutubePlaylistInfo"></see>/></returns>
+        /// <summary>
+        /// Gets the playlist info by given paylist ID
+        /// </summary>
+        /// <param name="playlistID">Playlist ID</param>
+        /// <returns><see cref="YoutubePlaylistInfo"></see>/></returns>
         //public async ValueTask<YoutubePlaylistInfo> GetPlaylistInfno(string playlistID, string[] videosURLs)
         //{
         //    var playlistInfo = await client.Playlists.GetAsync(playlistID);

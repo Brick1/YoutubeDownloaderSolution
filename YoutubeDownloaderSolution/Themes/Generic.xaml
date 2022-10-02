@@ -8,6 +8,7 @@
     <Style TargetType="{x:Type local2:NavButton}">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Width" Value="175"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -18,17 +19,26 @@
                             Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Path x:Name="Icon" Height="18" Width="18" Data="{TemplateBinding Icon}" Stretch="Uniform" Fill="#7b8792"/>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" x:Name="Icon" Height="25" Width="25" Data="{TemplateBinding Icon}" Stretch="Uniform" Fill="{TemplateBinding Foreground}"/>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="Title" Margin="15, 0, 0, 0" Grid.Column="1" Text="{TemplateBinding Title}" Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}"/>
+                        </Grid>                        
                     </Border>
                     <ControlTemplate.Triggers >
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="BackgroundBorder" Value="#d0ebff"/>
                             <Setter Property="Fill" TargetName="Icon" Value="#2a84f1"/>
+                            <Setter Property="Foreground" TargetName="Title" Value="#2a84f1"/>
                         </Trigger>
 
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" TargetName="BackgroundBorder" Value="#d0ebff"/>
                             <Setter Property="Fill" TargetName="Icon" Value="#2a84f1"/>
+                            <Setter Property="Foreground" TargetName="Title" Value="#2a84f1"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

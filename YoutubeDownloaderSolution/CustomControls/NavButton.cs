@@ -44,7 +44,7 @@ namespace YoutubeDownloaderDesktop.CustomControls
     ///     <MyNamespace:NavButton/>
     ///
     /// </summary>
-    public class NavButton : Control
+    public class NavButton : ListBoxItem
     {
         static NavButton()
         {
@@ -68,6 +68,17 @@ namespace YoutubeDownloaderDesktop.CustomControls
         }
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(Geometry), typeof(NavButton), new PropertyMetadata(null));
+
+
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(NavButton), new PropertyMetadata(null));
+
 
 
     }

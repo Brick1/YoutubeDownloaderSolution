@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YoutubeDownloaderDesktop.CustomControls;
 
 namespace YoutubeDownloaderSolution
 {
@@ -40,5 +41,15 @@ namespace YoutubeDownloaderSolution
         {
             Environment.Exit(0);
         }
+
+        private void SideBar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = SideBar.SelectedItem as NavButton;
+            if (selected == null) return;
+
+            MainContent.Navigate(selected.NavLink);
+        }
+
+        
     }
 }
