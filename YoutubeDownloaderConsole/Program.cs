@@ -30,7 +30,7 @@ namespace YoutubeDownloaderConsole
                 Console.WriteLine($"Downloading audio: {item.Title}");
                 Console.WriteLine($"{currentItemIndex + 1} of {playlistInfo.VideosInfos.Length + 1}");
 
-                Task.Run(() => manager.DownloadAudioFromUrl(item, progress)).Wait();
+                Task.Run(() => manager.DownloadAudioFromUrlAsync(item, progress)).Wait();
                 //while(!task.IsCompleted)
                 //{
                 //    Console.WriteLine(progress.ToString() + "%");

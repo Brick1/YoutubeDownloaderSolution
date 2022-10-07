@@ -96,9 +96,10 @@ namespace YoutubeDownloader.Youtube
         private async Task<Tuple<string, string>> DownloadMedia(IYoutubeVideoInfo videoInfo, IProgress<double> progress, Task<IStreamInfo> downloadMethod)
         {
             var stream = await downloadMethod;
-            var path = Path.Combine(Path.GetTempPath(), Helper.ValidateTitle(videoInfo.Title) + "." + stream.Container.Name);
+            var videoTitle = Helper.ValidateTitle(videoInfo.Title);
+            var path = Path.Combine(Path.GetTempPath(), videoTitle + "." + stream.Container.Name);
             await client.Videos.Streams.DownloadAsync(stream, path, progress);
-            return new Tuple<string, string>(path, videoInfo.Title);
+            return new Tuple<string, string>(path, videoTitle);
         }
 
 

@@ -20,7 +20,8 @@ namespace UnitTests
                 "\r\n          Arcane | TEETH [Edit/Tribute]!\r\n        ",
                 "\r\n          Unlike Pluto - Revenge, And A Little More\r\n        ",
                 "\r\n          twenty one pilots - My Blood (Official Video)\r\n        ",
-                "\r\n          VINAI x Le Pedre - I Was Made (Official Lyric Video)\r\n        "
+                "\r\n          VINAI x Le Pedre - I Was Made (Official Lyric Video)\r\n        ",
+                "start*sign"
 
             };
 
@@ -29,7 +30,8 @@ namespace UnitTests
                  "Arcane  TEETH EditTribute!",
                 "Unlike Pluto - Revenge, And A Little More",
                 "twenty one pilots - My Blood",
-                "VINAI x Le Pedre - I Was Made"
+                "VINAI x Le Pedre - I Was Made",
+                "startsign"
             };
 
             for(int i = 0; i < titles.Length; i++)

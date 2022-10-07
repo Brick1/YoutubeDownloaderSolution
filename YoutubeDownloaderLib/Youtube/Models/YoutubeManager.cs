@@ -47,23 +47,24 @@ namespace YoutubeDownloader.Youtube.Models
             });
         }
 
-        public async Task DownloadAudioFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
+        public async Task DownloadAudioFromUrlAsync(IYoutubeVideoInfo video, IProgress<double> progress)
         {
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp3";
             var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
-            var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2, extension);
-            await MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken);
-            // TODO: Some clean up after the converstion would be nice, not sure if needed rn
+            var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2 + extension);
+            MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
+            File.Delete(downloadInfo.Item1);
         }
 
-        public async Task DownloadVideoFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
+        public async Task DownloadVideoFromUrlAsync(IYoutubeVideoInfo video, IProgress<double> progress)
         {
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp4";
             var downloadInfo = await downloader.DownloadVideoAsync(video, progress);
-            var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2, extension);
-            await MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken);
+            var output = Path.Combine(Settings.VideoFolderPath, downloadInfo.Item2 + extension);
+            MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
+            File.Delete(downloadInfo.Item1);
         }
 
         /// <summary>

@@ -15,6 +15,7 @@ namespace YoutubeDownloader.Youtube.Models
         private static string[] prohibitedStrings =
         {
             "|",
+            "*",
             "/",
             "[",
             "]",
