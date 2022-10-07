@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using YoutubeDownloader.Youtube.Interfaces;
 
@@ -48,19 +49,21 @@ namespace YoutubeDownloader.Youtube.Models
 
         public async Task DownloadAudioFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
         {
+            CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp3";
             var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
             var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2, extension);
-            MediaConverter.Convert(downloadInfo.Item1, output);
+            await MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken);
             // TODO: Some clean up after the converstion would be nice, not sure if needed rn
         }
 
         public async Task DownloadVideoFromUrl(IYoutubeVideoInfo video, IProgress<double> progress)
         {
+            CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp4";
             var downloadInfo = await downloader.DownloadVideoAsync(video, progress);
             var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2, extension);
-            MediaConverter.Convert(downloadInfo.Item1, output);
+            await MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken);
         }
 
         /// <summary>

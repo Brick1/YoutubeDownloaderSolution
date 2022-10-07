@@ -96,72 +96,10 @@ namespace YoutubeDownloader.Youtube
         private async Task<Tuple<string, string>> DownloadMedia(IYoutubeVideoInfo videoInfo, IProgress<double> progress, Task<IStreamInfo> downloadMethod)
         {
             var stream = await downloadMethod;
-            var path = Path.Combine(Path.GetTempPath(), videoInfo.Title + "." + stream.Container.Name);
+            var path = Path.Combine(Path.GetTempPath(), Helper.ValidateTitle(videoInfo.Title) + "." + stream.Container.Name);
             await client.Videos.Streams.DownloadAsync(stream, path, progress);
             return new Tuple<string, string>(path, videoInfo.Title);
         }
-
-        ///// <summary>
-        ///// Gets video info
-        ///// </summary>
-        ///// <param name="videoID">Id from Url of video</param>
-        ///// <returns><see cref="YoutubeVideoInfo"/></returns>
-        //public async Task<YoutubeVideoInfo> GetVideoInfo(string videoID)
-        //{
-        //    var videoInfo = await client.Videos.GetAsync(videoID).ConfigureAwait(false);
-        //    return new YoutubeVideoInfo(videoInfo.Title, videoInfo.Author.Title, videoInfo.Id, videoInfo.Thumbnails.Select(q => q.Url).ToArray(), null, videoInfo.Duration);
-        //}
-
-
-        /// THIS WILL BE REMOVED IN THE FUTURE
-        /// <summary>
-        /// Gets the playlist info by given paylist ID
-        /// </summary>
-        /// <param name="playlistID">Playlist ID</param>
-        /// <returns><see cref="YoutubePlaylistInfo"></see>/></returns>
-        //public async ValueTask<YoutubePlaylistInfo> GetPlaylistInfno(string playlistID, string[] videosURLs)
-        //{
-        //    var playlistInfo = await client.Playlists.GetAsync(playlistID);
-        //    var playlistTitle = playlistInfo.Title;
-        //    return new YoutubePlaylistInfo(playlistTitle, playlistInfo.Description, videosURLs);
-        //}
-
-        ///// <summary>
-        ///// Gets the playlist by given playlist ID
-        ///// In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead
-        ///// </summary>
-        ///// <param name="playlistID">The playlist ID</param>
-        ///// <returns><see cref="YoutubeVideoInfo"></see>/></returns>
-        //[Obsolete("In a large playlist this method can take a few minutes, use foreach and GetVideoInfo instead")]
-        //public async Task<YoutubeVideoInfo[]> GetPlaylistVideosAsync(string[] playlistVideosUrls) // this seems to be critical, DO NOT USE interface as return type, idk why tho got to look into this
-        //{
-        //    //var playlistInfo = await client.Playlists.GetAsync(playlistID);
-        //    return await GetVideos(playlistVideosUrls).ConfigureAwait(false);
-        //}
-
-
-        ///// <summary>
-        ///// Gets videos infos as array od <see cref="IYoutubeVideoInfo"></see>/>
-        ///// </summary>
-        ///// <param name="playlistVideos">An array with playlist videos IDs</param>
-        ///// <returns><see cref="IYoutubeVideoInfo"></see> array/></returns>
-        //private async Task<YoutubeVideoInfo[]> GetVideos(string[] playlistVideos)
-        //{
-        //    List<YoutubeVideoInfo> videos = new List<YoutubeVideoInfo>();
-        //    foreach (var video in playlistVideos)
-        //    {
-        //        try
-        //        {
-        //            var videoInfo = await GetVideoInfo(video).ConfigureAwait(false);
-        //            videos.Add(videoInfo);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // TODO: Some kind of log system
-        //        }
-        //    }
-        //    return videos.ToArray();
-        //}
 
 
     }

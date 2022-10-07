@@ -28,7 +28,10 @@
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="Title" Margin="15, 0, 0, 0" Grid.Column="1" Text="{TemplateBinding Title}" Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}"/>
                         </Grid>                        
                     </Border>
+                     
                     <ControlTemplate.Triggers >
+
+
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="BackgroundBorder" Value="#d0ebff"/>
                             <Setter Property="Fill" TargetName="Icon" Value="#2a84f1"/>

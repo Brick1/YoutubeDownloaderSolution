@@ -1,9 +1,9 @@
-﻿using MediaToolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FFmpeg.NET;
 
 namespace YoutubeDownloader
 {
@@ -14,14 +14,13 @@ namespace YoutubeDownloader
         /// </summary>
         /// <param name="inputPath">Full path of the input file</param>
         /// <param name="outputPath">Full path of the output file</param>
-        public static void Convert(string inputPath, string outputPath)
+        public static async Task ConvertAsync(string inputPath, string outputPath, CancellationToken token)
         {
-            var input = new MediaToolkit.Model.MediaFile(inputPath);
-            var output = new MediaToolkit.Model.MediaFile(outputPath);
-            using (var engine = new Engine())
-            {
-                engine.Convert(input, output);
-            }
+            var input = new InputFile(inputPath);
+            var output = new OutputFile(outputPath);
+            var ffmpegPath = Path.Combine(Environment.CurrentDirectory, "ffmpeg.exe");
+            var ffmpeg = new Engine(ffmpegPath);
+            await ffmpeg.ConvertAsync(input, output, token);
         }
     }
 }

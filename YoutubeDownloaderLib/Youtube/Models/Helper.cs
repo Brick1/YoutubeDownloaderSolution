@@ -7,8 +7,28 @@ using System.Threading.Tasks;
 
 namespace YoutubeDownloader.Youtube.Models
 {
-    internal static class Helper
+    public static class Helper
     {
+        // Fix this and use it in regex
+        //private static string regularEx = "s/[|][/][[][]][Official][Video][Audio][official][video][audio][\r\n][(][)][Music][Lyric]";
+
+        private static string[] prohibitedStrings =
+        {
+            "|",
+            "/",
+            "[",
+            "]",
+            "Official",
+            "Video",
+            "Audio",
+            "\r\n",
+            "(",
+            ")",
+            "Music",
+            "Lyric",
+            "Lyrics"
+        };
+
         public static string ExtractVideoID(string url)
         {
             string listMark = "watch?v=";
@@ -36,6 +56,14 @@ namespace YoutubeDownloader.Youtube.Models
         public static bool IsYoutubeURL(string url)
         {
             return Regex.IsMatch(url, @"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$");
+        }
+
+        public static string ValidateTitle(string originalTitle)
+        {
+            string temp = originalTitle;
+            foreach (string prohibitedString in prohibitedStrings)
+                temp = temp.Replace(prohibitedString, "");
+            return temp.Trim();
         }
     }
 }
