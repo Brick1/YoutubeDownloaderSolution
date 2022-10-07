@@ -27,6 +27,8 @@ namespace YoutubeDownloader.Youtube.Models
             ")",
             "Music",
             "Lyric",
+            "\"",
+            "\'",
             "Lyrics"
         };
 

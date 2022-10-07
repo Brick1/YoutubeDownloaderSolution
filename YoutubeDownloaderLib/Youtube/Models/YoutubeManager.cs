@@ -52,6 +52,7 @@ namespace YoutubeDownloader.Youtube.Models
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp3";
             var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
+            if(downloadInfo == null) return;
             var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2 + extension);
             MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
             File.Delete(downloadInfo.Item1);

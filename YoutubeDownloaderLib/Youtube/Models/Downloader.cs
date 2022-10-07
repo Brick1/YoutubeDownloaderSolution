@@ -48,28 +48,33 @@ namespace YoutubeDownloader.Youtube
             return manifest.GetMuxedStreams().GetWithHighestBitrate();
         }
 
-        
+
         /// <summary>
         /// Downloads audio async to a local drive
         /// </summary>
         /// <param name="videoInfo"><see cref="IYoutubeVideoInfo"/></param>
         /// <param name="progress"><see cref="IProgress{T}>"/></param>
         /// <returns>Tuple<string, string> First one is complete path to the file, second is name of the locally stored file</returns>
-        public async Task<Tuple<string, string>> DownloadAudioAsync(IYoutubeVideoInfo videoInfo, IProgress<double> progress)
+        public async Task<Tuple<string, string>?> DownloadAudioAsync(IYoutubeVideoInfo videoInfo, IProgress<double> progress)
         {
-            return await DownloadMedia(videoInfo, progress, GetAudioManifest(videoInfo.ID));
+            var streamInfo = GetAudioManifest(videoInfo.ID);
+            if (streamInfo == null)
+                return null;
+            return await DownloadMedia(videoInfo, progress, streamInfo);
         }
 
         /// <summary>
         /// Downloads whole playlist, this can take a while and I really mean it.
         /// </summary>
         /// <returns>Returns list of tuples, where first string is path to the file and second is filename</returns>
-        public async Task<List<Tuple<string, string>>> DownloadAudiosAsync(IYoutubePlaylistInfo playlistInfo, IProgress<double> progress)
+        public async Task<List<Tuple<string, string>>?> DownloadAudiosAsync(IYoutubePlaylistInfo playlistInfo, IProgress<double> progress)
         {
-            List<Tuple<string, string>> downloadedAudios = new List<Tuple<string, string>>();
-            foreach(IYoutubeVideoInfo videoInfo in playlistInfo)
+            List<Tuple<string, string>>? downloadedAudios = new List<Tuple<string, string>>();
+            foreach (IYoutubeVideoInfo videoInfo in playlistInfo)
             {
-                downloadedAudios.Add(await DownloadAudioAsync(videoInfo, progress));
+                var itemToAdd = await DownloadAudioAsync(videoInfo, progress);
+                if (itemToAdd != null)
+                    downloadedAudios.Add(itemToAdd);
             }
             return downloadedAudios;
         }
