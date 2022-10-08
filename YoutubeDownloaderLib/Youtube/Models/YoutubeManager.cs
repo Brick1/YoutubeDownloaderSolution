@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using YoutubeDownloader.Youtube.Interfaces;
+using YoutubeExplode.Videos;
 
 namespace YoutubeDownloader.Youtube.Models
 {
@@ -51,11 +52,22 @@ namespace YoutubeDownloader.Youtube.Models
         {
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp3";
-            var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
-            if(downloadInfo == null) return;
-            var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2 + extension);
-            MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
-            File.Delete(downloadInfo.Item1);
+            try
+            {
+                var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
+                if (downloadInfo == null) return;
+                var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2 + extension);
+                MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
+                File.Delete(downloadInfo.Item1);
+            }
+            catch (Exception ex)
+            {
+                //Log the exception
+                Console.WriteLine("Video coudnt be downloaded\nReason:");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException?.Message);
+            }
+
         }
 
         public async Task DownloadVideoFromUrlAsync(IYoutubeVideoInfo video, IProgress<double> progress)
@@ -96,14 +108,15 @@ namespace YoutubeDownloader.Youtube.Models
                 {
                     var playlistItemsListResponse = await playlistItemsListRequest.ExecuteAsync().ConfigureAwait(false);
 
-                    foreach (var item in playlistItemsListResponse.Items)
-                    {
-                        // if the video is private there's no info about it, nor the URL, so let's just skip it
-                        if (item.Snippet?.Title.ToLower() == "private video") continue;
+                    var validatedPlaylistItems = await ValidatePlaylistItems(playlistItemsListResponse.Items);
+                    List<PlaylistItem> playlistItems = new List<PlaylistItem>();
+                    playlistItems.AddRange(validatedPlaylistItems);
 
+                    foreach (var item in validatedPlaylistItems)
+                    {
                         // creating the videoInfo and adding it to the list
                         var youtubevideoInfo = CreateVideoInfo(item);
-                        youtubeVideos.Add(youtubevideoInfo);
+                        playlistItems.Add(item);
                     }
                     nextPageToken = playlistItemsListResponse.NextPageToken;
                 }
@@ -117,6 +130,77 @@ namespace YoutubeDownloader.Youtube.Models
             // TODO: make a simplier way to get the thumbnail for the playlist
             return info;
         }
+
+        /// <summary>
+        /// Validate items for the list. Unlisted, Private, Restricted videos are skipped.
+        /// </summary>
+        /// <param name="items">Items to validate</param>
+        /// <returns>Returns a new <see cref="IEnumerable{PlaylistItem}"/> of <see cref="PlaylistItem"/></returns>
+        private async Task<IEnumerable<PlaylistItem>> ValidatePlaylistItems(IList<PlaylistItem> items)
+        {
+            var ids = items.Select(x => x.Snippet.ResourceId.VideoId).ToList();
+            var videoListRequest = ytService.Videos.List("contentDetails,status");
+            videoListRequest.Id = ids;
+            var videoListResponse = await videoListRequest.ExecuteAsync().ConfigureAwait(false);
+            foreach (var item in videoListResponse.Items)
+            {
+                var isBlockedInRegion = IsBlockedInRegion("CZ", item);
+                if (isBlockedInRegion || item.Status.PrivacyStatus == "unlisted" || item.Status.PrivacyStatus == "private")
+                {
+                    var playlistItem = GetItemById(item.Id, items);
+                    items.Remove(playlistItem);
+                }
+
+            }
+            return items;
+        }
+
+        /// <summary>
+        /// Checks if the Video is restricted in current region
+        /// </summary>
+        /// <returns></returns>
+        private bool IsBlockedInRegion(string regionCode, Google.Apis.YouTube.v3.Data.Video video)
+        {
+            var regionRestriction = video.ContentDetails.RegionRestriction;
+
+            if (regionRestriction == null)
+                return false;
+
+            if (regionRestriction.Blocked != null)
+            {
+                return CompareRegions(regionCode, regionRestriction.Blocked);
+            }
+            else if (regionRestriction.Allowed != null)
+            {
+               return !CompareRegions(regionCode, regionRestriction.Allowed);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Compares region to all given regions
+        /// </summary>
+        /// <returns>Returns true if they're match</returns>
+        private bool CompareRegions(string regionA, IList<string> regionB)
+        {
+            foreach (var region in regionB)
+                if (regionA == region)
+                    return true;
+            return false;
+        }
+
+        private PlaylistItem GetItemById(string id, IList<PlaylistItem> items)
+        {
+            return items.Where((item) => item.Snippet.ResourceId.VideoId == id).First();
+        }
+
+
+        //public Task<bool> CheckVideoStatus(string videoID)
+        //{
+        //    var videoStatusRequest = ytService.Videos.List();
+        //    videoStatusRequest
+        //}
 
         /// <summary>
         /// Creates video info from <see cref="PlaylistItem"/>
