@@ -108,15 +108,13 @@ namespace YoutubeDownloader.Youtube.Models
                 {
                     var playlistItemsListResponse = await playlistItemsListRequest.ExecuteAsync().ConfigureAwait(false);
 
-                    var validatedPlaylistItems = await ValidatePlaylistItems(playlistItemsListResponse.Items);
-                    List<PlaylistItem> playlistItems = new List<PlaylistItem>();
-                    playlistItems.AddRange(validatedPlaylistItems);
+                    var validatedPlaylistItems = await ValidatePlaylistItems(playlistItemsListResponse.Items); // validates by 50 results, it's better because of API calls
 
                     foreach (var item in validatedPlaylistItems)
                     {
                         // creating the videoInfo and adding it to the list
                         var youtubevideoInfo = CreateVideoInfo(item);
-                        playlistItems.Add(item);
+                        youtubeVideos.Add(youtubevideoInfo);
                     }
                     nextPageToken = playlistItemsListResponse.NextPageToken;
                 }
