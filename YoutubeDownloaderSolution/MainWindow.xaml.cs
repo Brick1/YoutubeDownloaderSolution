@@ -46,7 +46,7 @@ namespace YoutubeDownloaderSolution
         {
             var selected = SideBar.SelectedItem as NavButton;
             if (selected == null) return;
-
+            var nav = selected.NavLink;
             MainContent.Navigate(selected.NavLink);
         }
 

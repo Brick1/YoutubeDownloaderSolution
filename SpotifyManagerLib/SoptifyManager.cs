@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YoutubeDownloaderDesktop
+namespace SpotifyManagerLib
 {
-    internal class ContentManager
+    public class SoptifyManager
     {
-
+       
     }
 }

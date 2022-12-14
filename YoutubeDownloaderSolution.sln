@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeDownloaderLib", "You
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{2D83FB1D-947D-4709-B415-B34EFBED2245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloaderConsole", "YoutubeDownloaderConsole\YoutubeDownloaderConsole.csproj", "{BF88F238-AC98-44F2-8236-69C37C16F99F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeDownloaderConsole", "YoutubeDownloaderConsole\YoutubeDownloaderConsole.csproj", "{BF88F238-AC98-44F2-8236-69C37C16F99F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyManagerLib", "SpotifyManagerLib\SpotifyManagerLib.csproj", "{D93707A7-4ADB-4CF7-A8C5-2C5BCD15E767}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BF88F238-AC98-44F2-8236-69C37C16F99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF88F238-AC98-44F2-8236-69C37C16F99F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF88F238-AC98-44F2-8236-69C37C16F99F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D93707A7-4ADB-4CF7-A8C5-2C5BCD15E767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93707A7-4ADB-4CF7-A8C5-2C5BCD15E767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93707A7-4ADB-4CF7-A8C5-2C5BCD15E767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93707A7-4ADB-4CF7-A8C5-2C5BCD15E767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

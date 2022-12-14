@@ -1,0 +1,28 @@
+﻿<Page x:Class="YoutubeDownloaderDesktop.Pages.ActionResolver"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:YoutubeDownloaderDesktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ActionResolver">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25" FontSize="30" Foreground="White">URL OBSAHUJE ID VIDEA I PLAYLISTU</TextBlock>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Click="VideoButton_Click">Video</Button>
+            <Button Click="PlaylistButton_Click">Playlist</Button>
+        </StackPanel>
+        
+
+    </Grid>
+</Page>

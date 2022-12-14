@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YoutubeDownloader.Youtube.Models;
+using YoutubeDownloaderDesktop.UserControls;
+using YoutubeDownloaderSolution;
 
 namespace YoutubeDownloaderDesktop.Pages
 {
@@ -20,9 +23,39 @@ namespace YoutubeDownloaderDesktop.Pages
     /// </summary>
     public partial class DownloadPage : Page
     {
+
+        YoutubeManager manager;
+        UrlInputUC urlInputUC;
+        ActionResolver actionResolver;
         public DownloadPage()
         {
             InitializeComponent();
+            manager = new YoutubeManager();
+            urlInputUC = new();
+            DownloadFrame.Navigate(urlInputUC);
+        }
+
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(urlInputUC.urlInput.Text))
+                return;
+
+            var videoId = Helper.ExtractVideoID(urlInputUC.urlInput.Text);
+            var playlistId = Helper.ExtractPlaylistID(urlInputUC.urlInput.Text);
+
+            if (videoId.Length > 0 && playlistId.Length > 0)
+            {
+                actionResolver = new();
+                DownloadFrame.Navigate(actionResolver);
+            }
+            else if(playlistId.Length > 0)
+            {
+               
+            }  
+            else if(videoId.Length > 0)
+            {
+
+            }
         }
     }
 }

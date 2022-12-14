@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:YoutubeDownloaderDesktop.Pages"
+      xmlns:UC="clr-namespace:YoutubeDownloaderDesktop.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DownloadPage">
+    <Grid>
+        <Frame Name="DownloadFrame">
 
-    <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
-        <TextBox InputScope="Url" Height="50" BorderBrush="#2a84f1" Background="#d0ebff"  Width="1000" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Stretch" FontFamily="{StaticResource Poppins}" FontSize="33"/>
+        </Frame>
+        <Button Name="NextPage" Height="50" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="30" FontWeight="Bold" Click="NextPage_Click">></Button>
     </Grid>
+    
 </Page>
