@@ -34,14 +34,14 @@
 
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="BackgroundBorder" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="Icon" Value="#2a84f1"/>
-                            <Setter Property="Foreground" TargetName="Title" Value="#2a84f1"/>
+                            <Setter Property="Fill" TargetName="Icon" Value="{DynamicResource ResourceKey=SecondaryForegroundBrush}"/>
+                            <Setter Property="Foreground" TargetName="Title" Value="{DynamicResource ResourceKey=SecondaryForegroundBrush}"/>
                         </Trigger>
 
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="BackgroundBorder" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="Icon" Value="#2a84f1"/>
-                            <Setter Property="Foreground" TargetName="Title" Value="#2a84f1"/>
+                            <Setter Property="Background" TargetName="BackgroundBorder" Value="{DynamicResource ResourceKey=PrimaryForegroundBrush}"/>
+                            <Setter Property="Fill" TargetName="Icon" Value="{DynamicResource ResourceKey=SecondaryForegroundBrush}"/>
+                            <Setter Property="Foreground" TargetName="Title" Value="{DynamicResource ResourceKey=SecondaryForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

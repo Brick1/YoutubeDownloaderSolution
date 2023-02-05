@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,11 +31,17 @@ namespace YoutubeDownloaderSolution
             this.Visibility = Visibility.Hidden;
             LoadingWindow loading = new LoadingWindow();
             loading.Show();
+            LoadSettings();
             //await Task.Delay(TimeSpan.FromSeconds(3));
             Thread.Sleep(2000);
             loading.Hide();
             this.Visibility = Visibility.Visible;
 
+        }
+
+        private void LoadSettings()
+        {
+            // TODO: code for loading settings into static class
         }
 
         private void ClsButton_Click(object sender, RoutedEventArgs e)
@@ -46,7 +53,6 @@ namespace YoutubeDownloaderSolution
         {
             var selected = SideBar.SelectedItem as NavButton;
             if (selected == null) return;
-            var nav = selected.NavLink;
             MainContent.Navigate(selected.NavLink);
         }
 
