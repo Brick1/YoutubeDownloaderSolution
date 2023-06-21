@@ -56,6 +56,9 @@ namespace YoutubeDownloaderSolution
             MainContent.Navigate(selected.NavLink);
         }
 
-        
+        private void NavButton_Selected()
+        {
+
+        }
     }
 }

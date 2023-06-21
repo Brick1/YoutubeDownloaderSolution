@@ -56,7 +56,7 @@ namespace YoutubeDownloader.Youtube.Models
             {
                 var downloadInfo = await downloader.DownloadAudioAsync(video, progress);
                 if (downloadInfo == null) return;
-                var output = Path.Combine(Settings.AudioFolderPath, downloadInfo.Item2 + extension);
+                var output = Path.Combine(Settings.Instance.AudioFolderPath, downloadInfo.Item2 + extension);
                 MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
                 File.Delete(downloadInfo.Item1);
             }
@@ -75,7 +75,7 @@ namespace YoutubeDownloader.Youtube.Models
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp4";
             var downloadInfo = await downloader.DownloadVideoAsync(video, progress);
-            var output = Path.Combine(Settings.VideoFolderPath, downloadInfo.Item2 + extension);
+            var output = Path.Combine(Settings.Instance.VideoFolderPath, downloadInfo.Item2 + extension);
             MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
             File.Delete(downloadInfo.Item1);
         }

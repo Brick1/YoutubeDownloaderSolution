@@ -55,7 +55,7 @@ namespace YoutubeDownloader.Youtube
         /// <param name="videoInfo"><see cref="IYoutubeVideoInfo"/></param>
         /// <param name="progress"><see cref="IProgress{T}>"/></param>
         /// <returns>Tuple<string, string> First one is complete path to the file, second is name of the locally stored file</returns>
-        public async Task<Tuple<string, string>?> DownloadAudioAsync(IYoutubeVideoInfo videoInfo, IProgress<double> progress)
+        public async Task<Tuple<string, string>?> DownloadAudioAsync(IYoutubeVideoInfo videoInfo, IProgress<double> progress, string savePath)
         {
             var streamInfo = GetAudioManifest(videoInfo.ID);
             if (streamInfo == null)
@@ -67,12 +67,12 @@ namespace YoutubeDownloader.Youtube
         /// Downloads whole playlist, this can take a while and I really mean it.
         /// </summary>
         /// <returns>Returns list of tuples, where first string is path to the file and second is filename</returns>
-        public async Task<List<Tuple<string, string>>?> DownloadAudiosAsync(IYoutubePlaylistInfo playlistInfo, IProgress<double> progress)
+        public async Task<List<Tuple<string, string>>?> DownloadAudiosAsync(IYoutubePlaylistInfo playlistInfo, IProgress<double> progress, string saveFilePath)
         {
             List<Tuple<string, string>>? downloadedAudios = new List<Tuple<string, string>>();
             foreach (IYoutubeVideoInfo videoInfo in playlistInfo)
             {
-                var itemToAdd = await DownloadAudioAsync(videoInfo, progress);
+                var itemToAdd = await DownloadAudioAsync(videoInfo, progress, saveFilePath);
                 if (itemToAdd != null)
                     downloadedAudios.Add(itemToAdd);
             }

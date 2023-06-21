@@ -16,7 +16,7 @@ namespace YoutubeDownloader
 
         public Filemanager(string programFolderName)
         {
-            Settings.ProgramFolderName = programFolderName;
+            Settings.Instance.ProgramFolderName = programFolderName;
         }
 
         public void CheckFolder(string path)
@@ -46,21 +46,18 @@ namespace YoutubeDownloader
             });
         }
 
-        public Settings LoadSettings()
+        public void LoadSettings()
         {
-            return new Settings();
+            string filePath = Path.Combine(Settings.Instance.AppFolder, Settings.MAIN_FOLDER_NAME, "appsettings.json");
+            var settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(filePath));
         }
 
-        public void SaveSettings()
+        public async Task SaveSettingsAsync()
         {
-            var file = new FileStream("", FileMode.OpenOrCreate);
-            try
-            {
-            }
-            catch(SerializationException ex)
-            {
-
-            }
+            string filePath = Path.Combine(Settings.Instance.AppFolder, Settings.MAIN_FOLDER_NAME, "appsettings.json");
+            using FileStream createStream = File.Create(filePath);
+            await JsonSerializer.SerializeAsync(createStream, new { Settings.Instance.VideoFolderPath, Settings.Instance.AudioFolderPath });
+            await createStream.DisposeAsync();
         }
     }
 }
