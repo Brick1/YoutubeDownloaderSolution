@@ -23,6 +23,7 @@ namespace YoutubeDownloader
         public string AppFolder { get; set; }
         public string WindowTitle { get; set; }
         public string LastUrl { get; set; }
+        public string ApiKey { get; private set; }
         private Settings()
         {
             ProgramFolderName = "";

@@ -9,9 +9,7 @@ namespace YoutubeDownloader.Youtube.Models
 {
     public static class Helper
     {
-        // Fix this and use it in regex
-        //private static string regularEx = "s/[|][/][[][]][Official][Video][Audio][official][video][audio][\r\n][(][)][Music][Lyric]";
-
+        
         private static string[] prohibitedStrings =
         {
             "|",
@@ -32,6 +30,11 @@ namespace YoutubeDownloader.Youtube.Models
             "Lyrics"
         };
 
+        /// <summary>
+        /// Extracts video ID from youtube URL
+        /// </summary>
+        /// <param name="url">Url of the video</param>
+        /// <returns>Video ID</returns>
         public static string ExtractVideoID(string url)
         {
             string listMark = "watch?v=";
@@ -45,6 +48,11 @@ namespace YoutubeDownloader.Youtube.Models
             return id;
         }
 
+        /// <summary>
+        /// Extracts playlist ID from youtube URL
+        /// </summary>
+        /// <param name="url">Url of the playlist</param>
+        /// <returns>Playlist ID</returns>
         public static string ExtractPlaylistID(string url)
         {
             string listMark = "list=";
@@ -61,6 +69,9 @@ namespace YoutubeDownloader.Youtube.Models
             return Regex.IsMatch(url, @"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$");
         }
 
+        /// <summary>
+        /// Validate title of the video for use in windows
+        /// </summary>
         public static string ValidateTitle(string originalTitle)
         {
             string temp = originalTitle;

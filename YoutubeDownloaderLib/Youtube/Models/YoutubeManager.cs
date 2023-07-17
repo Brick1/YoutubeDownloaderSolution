@@ -28,9 +28,10 @@ namespace YoutubeDownloader.Youtube.Models
 
         public YoutubeManager()
         {
-            //TODO: GET API KEY LOGIC HERE
+            // TODO: GET API KEY LOGIC HERE
+            // TODO: Find out how to treat secrects
             downloader = new Downloader();
-            ytService = CreateYoutubeService("AIzaSyABcRj1TumeuD-LKu8NvsQQJmoCOljRbWA");
+            ytService = CreateYoutubeService(Settings.Instance.ApiKey); // Needs to be tested
 
         }
 
@@ -48,7 +49,13 @@ namespace YoutubeDownloader.Youtube.Models
             });
         }
 
-        public async Task DownloadAudioFromUrlAsync(IYoutubeVideoInfo video, IProgress<double> progress)
+        /// <summary>
+        /// Downloads audio from given Youtube URL
+        /// </summary>
+        /// <param name="video"></param>
+        /// <param name="progress"></param>
+        /// <returns></returns>
+        public async Task DownloadAudioFromAsync(IYoutubeVideoInfo video, IProgress<double> progress)
         {
             CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp3";
@@ -63,21 +70,38 @@ namespace YoutubeDownloader.Youtube.Models
             catch (Exception ex)
             {
                 //Log the exception
-                Console.WriteLine("Video coudnt be downloaded\nReason:");
+                Console.WriteLine("Audio couldnt be downloaded\nReason:");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.InnerException?.Message);
             }
 
         }
 
-        public async Task DownloadVideoFromUrlAsync(IYoutubeVideoInfo video, IProgress<double> progress)
+        /// <summary>
+        /// Downloads video
+        /// </summary>
+        /// <param name="video"></param>
+        /// <param name="progress"></param>
+        /// <returns></returns>
+        public async Task DownloadVideoFromAsync(IYoutubeVideoInfo video, IProgress<double> progress)
         {
-            CancellationToken cancellationToken = new CancellationToken();
             var extension = ".mp4";
-            var downloadInfo = await downloader.DownloadVideoAsync(video, progress);
-            var output = Path.Combine(Settings.Instance.VideoFolderPath, downloadInfo.Item2 + extension);
-            MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
-            File.Delete(downloadInfo.Item1);
+            CancellationToken cancellationToken = new CancellationToken();
+            try
+            {
+                var downloadInfo = await downloader.DownloadVideoAsync(video, progress);
+                var output = Path.Combine(Settings.Instance.VideoFolderPath, downloadInfo.Item2 + extension);
+                MediaConverter.ConvertAsync(downloadInfo.Item1, output, cancellationToken).Wait();
+                File.Delete(downloadInfo.Item1);
+            }
+            catch(Exception ex)
+            {
+                //Log the exception
+                Console.WriteLine("Video couldnt be downloaded\nReason:");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException?.Message);
+            }
+            
         }
 
         /// <summary>
@@ -170,7 +194,7 @@ namespace YoutubeDownloader.Youtube.Models
             }
             else if (regionRestriction.Allowed != null)
             {
-               return !CompareRegions(regionCode, regionRestriction.Allowed);
+                return !CompareRegions(regionCode, regionRestriction.Allowed);
             }
 
             return true;
@@ -179,7 +203,7 @@ namespace YoutubeDownloader.Youtube.Models
         /// <summary>
         /// Compares region to all given regions
         /// </summary>
-        /// <returns>Returns true if they're match</returns>
+        /// <returns>Returns true if they're match which means restricted</returns>
         private bool CompareRegions(string regionA, IList<string> regionB)
         {
             foreach (var region in regionB)
@@ -215,6 +239,12 @@ namespace YoutubeDownloader.Youtube.Models
             return new YoutubeVideoInfo(title, author, id, thumbnails, addedToPlaylist, null);
         }
 
+
+        /// <summary>
+        /// Gets thumbnails of video
+        /// </summary>
+        /// <param name="thumbnails"></param>
+        /// <returns></returns>
         private Thumbnails GetThumnbails(ThumbnailDetails? thumbnails)
         {
             if (thumbnails != null) return new Thumbnails();
@@ -228,6 +258,11 @@ namespace YoutubeDownloader.Youtube.Models
             return thumbs;
         }
 
+        /// <summary>
+        /// Gets thumbnail URLs for the video
+        /// </summary>
+        /// <param name="thumbnailDetails"></param>
+        /// <returns></returns>
         private string[] GetThumbnailURL(ThumbnailDetails thumbnailDetails)
         {
             List<string> urls = new List<string>();

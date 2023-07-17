@@ -51,6 +51,9 @@ namespace YoutubeDownloader.Youtube
         }
     }
 
+    /// <summary>
+    /// Represents thumbnails of a video
+    /// </summary>
     public class Thumbnails
     {
         public Thumbnail? Default { get; set; }
@@ -60,6 +63,9 @@ namespace YoutubeDownloader.Youtube
         public Thumbnail? MaxRes { get; set; }
     }
 
+    /// <summary>
+    /// Represents thumbnail of a video
+    /// </summary>
     public class Thumbnail
     {
         public string URL { get; private set; }
