@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:YoutubeDownloaderDesktop.UserControls"
              mc:Ignorable="d" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              Height="75" Width="350">
     <Grid>
         <Rectangle  RenderTransformOrigin="0.5,0.5" RadiusX="10" RadiusY="10">
@@ -20,15 +21,21 @@
                 <SolidColorBrush Color="White"/>
             </Rectangle.Fill>
         </Rectangle>
-        <StackPanel Orientation="Horizontal" Margin="10, 0">
-            <Label VerticalAlignment="Center">
-                <Grid>
-                    <Rectangle Height="40" Width="40" Fill="Red"  RadiusX="10" RadiusY="10"/>
-                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Text="Y" Foreground="White" />
+        <Grid Margin="10, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Column="0">
+                <Grid Margin="0 7 0 0">
+                    <Rectangle Height="30" Width="30" Fill="Red"  RadiusX="5" RadiusY="5"/>
+                    <TextBlock  HorizontalAlignment="Center" Padding="5" VerticalAlignment="Center" FontSize="20" Foreground="White" >
+                        <fa:FontAwesome Icon="Play"/>
+                    </TextBlock>
                 </Grid>
-            </Label>            
-            <TextBlock Margin="-5" VerticalAlignment="Center" FontSize="29" Text="outube Downloader" />
-        </StackPanel>
+            </Label>
+            <TextBlock Grid.Column="1"  FontSize="29" Text="Youtube Downloader" Margin="0, 20" VerticalAlignment="Stretch"  />
+        </Grid>
 
     </Grid>
 </UserControl>

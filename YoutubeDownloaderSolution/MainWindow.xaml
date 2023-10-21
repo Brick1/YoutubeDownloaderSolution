@@ -28,7 +28,7 @@
             <localUC:LogoUC/>
         </Label>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button>Settings</Button>
+            <Button Style="{DynamicResource MainButtons}">Settings</Button>
             <Button>Minimize</Button>
             <Button Click="ClsButton_Click">Close</Button>
         </StackPanel>
