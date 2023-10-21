@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:YoutubeDownloaderSolution"
         xmlns:localUC="clr-namespace:YoutubeDownloaderDesktop.UserControls"
         xmlns:local2 ="clr-namespace:YoutubeDownloaderDesktop.CustomControls"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -28,9 +29,15 @@
             <localUC:LogoUC/>
         </Label>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{DynamicResource MainButtons}">Settings</Button>
-            <Button>Minimize</Button>
-            <Button Click="ClsButton_Click">Close</Button>
+            <Button Style="{DynamicResource MainButtons}" Margin="5">
+                <fa:FontAwesome Icon="Gear" FontSize="50"/>
+            </Button>
+            <Button  Margin="5">
+                <fa:FontAwesome Icon="WindowMinimize" FontSize="50"/>
+            </Button>
+            <Button Click="ClsButton_Click" Margin="5">
+                <fa:FontAwesome Icon="WindowClose" FontSize="50"/>
+            </Button>
         </StackPanel>
         <Grid x:Name="GridMainContent" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -59,8 +66,8 @@
             </ListBox>
 
             <Frame x:Name="MainContent" Grid.Column="1" NavigationUIVisibility="Hidden" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Frame>
-            
 
-        </Grid>        
+
+        </Grid>
     </Grid>
 </Window>
