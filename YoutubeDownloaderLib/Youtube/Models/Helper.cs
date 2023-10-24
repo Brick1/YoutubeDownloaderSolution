@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace YoutubeDownloader.Youtube.Models
+namespace YoutubeDownloaderLib.Youtube.Models
 {
     public static class Helper
     {

@@ -1,5 +1,5 @@
-﻿using YoutubeDownloader.Youtube.Interfaces;
-using YoutubeDownloader.Youtube.Models;
+﻿using YoutubeDownloaderLib.Youtube.Interfaces;
+using YoutubeDownloaderLib.Youtube.Models;
 
 namespace YoutubeDownloaderConsole
 {

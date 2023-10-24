@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using YoutubeDownloader.Youtube.Interfaces;
+using YoutubeDownloaderLib.Youtube.Interfaces;
 using YoutubeExplode.Videos;
 
-namespace YoutubeDownloader.Youtube.Models
+namespace YoutubeDownloaderLib.Youtube.Models
 {
 
     /// <summary>

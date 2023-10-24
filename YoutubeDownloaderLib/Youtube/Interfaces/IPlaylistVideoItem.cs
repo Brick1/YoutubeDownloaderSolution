@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YoutubeDownloader.Youtube.Interfaces
+namespace YoutubeDownloaderLib.Youtube.Interfaces
 {
     public interface IPlaylistVideoItem
     {

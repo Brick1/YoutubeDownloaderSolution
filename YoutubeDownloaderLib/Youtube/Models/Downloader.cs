@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeDownloader.Youtube.Interfaces;
-using YoutubeDownloader.Youtube.Models;
+using YoutubeDownloaderLib.Youtube.Interfaces;
+using YoutubeDownloaderLib.Youtube.Models;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 
-namespace YoutubeDownloader.Youtube
+namespace YoutubeDownloaderLib.Youtube
 {
     /// <summary>
     /// This is main class for downloading from YT

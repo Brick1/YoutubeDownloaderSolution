@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeDownloader.Youtube.Interfaces;
+using YoutubeDownloaderLib.Youtube.Interfaces;
 using System.Text.Json;
 
-namespace YoutubeDownloader
+namespace YoutubeDownloaderLib
 {
     internal class Filemanager
     {

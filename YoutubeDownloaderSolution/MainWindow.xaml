@@ -25,18 +25,17 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Center" Grid.Row="0">
-            <!--<d:TextBlock Text="YoutubeDownloader" FontFamily="{StaticResource Poppins}" FontSize="34" Foreground="White"/>-->
             <localUC:LogoUC/>
         </Label>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Style="{DynamicResource MainButtons}" Margin="5">
-                <fa:FontAwesome Icon="Gear" FontSize="50"/>
+                <fa:FontAwesome Icon="Gear" FontSize="30"/>
             </Button>
             <Button  Margin="5">
-                <fa:FontAwesome Icon="WindowMinimize" FontSize="50"/>
+                <fa:FontAwesome Icon="WindowMinimize" FontSize="30"/>
             </Button>
             <Button Click="ClsButton_Click" Margin="5">
-                <fa:FontAwesome Icon="WindowClose" FontSize="50"/>
+                <fa:FontAwesome Icon="WindowClose" FontSize="30"/>
             </Button>
         </StackPanel>
         <Grid x:Name="GridMainContent" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -49,7 +48,8 @@
             <ListBox HorizontalAlignment="Stretch"  x:Name="SideBar" 
                      SelectionMode="Single" SelectionChanged="SideBar_SelectionChanged" 
                      Grid.Column="0" Margin="0, 50" BorderThickness="0" 
-                     Background="Transparent">
+                     Background="Transparent" 
+                     >
                 <ListBox.Resources>
                     <Style TargetType="local2:NavButton">
                         <Setter Property="Foreground" Value="#7b8792"/>

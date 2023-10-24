@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeDownloader.Youtube.Interfaces;
+using YoutubeDownloaderLib.Youtube.Interfaces;
 
-namespace YoutubeDownloader.Youtube.Models
+namespace YoutubeDownloaderLib.Youtube.Models
 {
     public class YoutubePlaylistInfo : IYoutubePlaylistInfo
     {

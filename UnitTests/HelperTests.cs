@@ -1,4 +1,4 @@
-using YoutubeDownloader.Youtube.Models;
+using YoutubeDownloaderLib.Youtube.Models;
 
 namespace UnitTests
 {

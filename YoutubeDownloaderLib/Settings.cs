@@ -8,9 +8,9 @@ using YoutubeExplode.Videos.Streams;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace YoutubeDownloader
+namespace YoutubeDownloaderLib
 {
-    internal class Settings
+    public class Settings
     {
 
         private static Settings instance;
@@ -39,8 +39,7 @@ namespace YoutubeDownloader
 
         public void LoadSettings()
         {
-            if (!File.Exists(Path.Combine(AppFolder, "sett.bin")))
-                return;
+            if (!File.Exists(Path.Combine(AppFolder, "sett.bin"))) { }
             Settings set = DeserializableFromFile<Settings>("sett.bin", AppFolder);
             this.AudioFolderPath = set.AudioFolderPath;
             this.VideoFolderPath = set.VideoFolderPath;

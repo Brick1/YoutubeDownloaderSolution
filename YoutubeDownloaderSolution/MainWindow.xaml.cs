@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using YoutubeDownloaderDesktop.CustomControls;
+using YoutubeDownloaderLib;
 
 namespace YoutubeDownloaderSolution
 {
@@ -32,7 +33,6 @@ namespace YoutubeDownloaderSolution
             LoadingWindow loading = new LoadingWindow();
             loading.Show();
             LoadSettings();
-            //await Task.Delay(TimeSpan.FromSeconds(3));
             Thread.Sleep(2000);
             loading.Hide();
             this.Visibility = Visibility.Visible;
@@ -41,7 +41,7 @@ namespace YoutubeDownloaderSolution
 
         private void LoadSettings()
         {
-            // TODO: code for loading settings into static class
+            YoutubeDownloaderLib.Settings.Instance.LoadSettings();
         }
 
         private void ClsButton_Click(object sender, RoutedEventArgs e)
